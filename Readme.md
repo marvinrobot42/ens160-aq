@@ -24,7 +24,7 @@ Features
 Notes
 
 This is my first device driver project.  It was inspired by Alexander Hübener excellent ENS160 crate.
-I was not able to get thaty ENS160 crate working in my ESP32-C3 (unknown reason) so I created my own driver as a learning exercise.
+I was not able to get that ENS160 crate working in my ESP32-C3 (unknown reason) so I created my own driver as a learning exercise.
 
 
 Usage
