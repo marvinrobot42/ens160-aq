@@ -1,0 +1,28 @@
+[package]
+name = "ens160-aq"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+license = "MIT OR Apache-2.0"
+keywords = ["sensor", "i2c", "ens160"]
+categories = ["embedded", "no-std"]
+publish = true
+exclude = [
+    ".gitattributes",
+    ".drone.yml",
+    ".pre-commit-config.yaml",
+    "Makefile.toml",
+]
+
+[features]
+default = []
+
+[dependencies]
+log = "0.4"
+libm = "0.2.8"
+byteorder = { version = "1", default-features = false }
+embedded-hal = { version = "0.2" }
+num-traits = { version = "0.2", default-features = false }
+bitfield = "0.14.0"
