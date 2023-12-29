@@ -3,27 +3,28 @@ Rust ENS160-AQ Crate
 
 A Rust crate for ScioSense ENS160 air quality sensor 
 
-<https://github....>
+<https://github.com/marvinrobot42/ens160-aq.git>
 
 [ENS160]: https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf
 
 Features
 
 - designed for embedded use (ESP32-C3 and -S3 and STM32F3DISCOVERY)
-- - configurable interrupt pin
+- configurable interrupt pin
 - supports both 0x52 (default) and 0x53 (secondary) I2C device addresses
 - set temperature and humidity for ENS160 compensation calulation
-- SPI not supported, yet
 - reads air quality index, eCO2, TVOC, ethanol concentration and raw hot plate resistance (in ohms)
 - an easy to use Measurements struct
 - an easy to use initialize function
 - no_std embedded compatible
+
+- (SPI not supported, yet)
   
 
 Notes
 
 This is my first device driver project.  It was inspired by Alexander Hübener excellent ENS160 crate.
-I was not able to get the ENS160 crate working in my ESP32-C3 (unknown reason) so I created my own driver as a learning exercise.
+I was not able to get thaty ENS160 crate working in my ESP32-C3 (unknown reason) so I created my own driver as a learning exercise.
 
 
 Usage
@@ -68,14 +69,15 @@ let pins = peripherals.pins;
 let sda = pins.gpio0;
 let scl = pins.gpio1;
 let i2c = peripherals.i2c0;
-let config = I2cConfig::new().baudrate(100.kHz().into());
+let config = I2cConfig::new().baudrate(100.kHz().into());  // should not at 400 kHz
 let i2c_dev = I2cDriver::new(i2c, sda, scl, &config)?;
 
 let ens160_int = PinDriver::input(pins.gpio6).unwrap();  // connect to ENS160 INT pin if using it
+
 let mut ens160 = Ens160::new(i2c_dev, Ets {});  // Ets is ESP32 IDF delay function
 
 
-// configure ENS160 interrupt pin for on new data active low, push_pull interrupt
+// optional: configure ENS160 interrupt pin for on new data active low, push_pull drive mode
 let int_pin_config: InterruptPinConfig = InterruptPinConfig::builder()
   .active_low()
   .push_pull()
@@ -85,16 +87,16 @@ let int_pin_config: InterruptPinConfig = InterruptPinConfig::builder()
 ens160.config_interrupt_pin(int_pin_config.get_value()).unwrap();
 
 ens160.initialize().unwrap();
-ens160.set_temp_rh_comp(21.5, 41).unwrap();  // may not be required in your app
-let (temp_c, rh) = ens160.get_temp_rh_comp().unwrap();
-info!("set compensation to temperature = {} C, relative humidity = {} %", temp_c, rh);
 
-info!("ens160 status = {:#?}",ens160.get_status().unwrap() );
+// optional: usually not required
+ens160.set_temp_rh_comp(21.5, 41).unwrap();  
+let (temp_c, rh) = ens160.get_temp_rh_comp().unwrap();
+info!("compensation set to temperature = {} C, relative humidity = {} %", temp_c, rh);
 
 loop {
   if let Ok(status) = ens160.get_status() {
     info!("ens160 status is {:#?}", status);
-    if status.new_data_ready() {
+    if status.new_data_ready() {  // read all measurements
       let measuremnts: Measurements = ens160.get_measurement().unwrap();
       info!("measurements are : {:#?}\n\n", measuremnts);      
     }
