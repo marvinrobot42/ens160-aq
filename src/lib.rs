@@ -10,7 +10,6 @@ pub mod data;
 use crate::data::ENS160Command;
 use crate::data::OperationMode;
 
-use constants::DeviceAddress;
 use data::Measurements;
 use data::{AirQualityIndex, Status, ECO2};
 
@@ -112,7 +111,7 @@ where
     pub fn set_operation_mode(
         &mut self,
         mode: OperationMode,
-    ) -> Result<(OperationMode), Ens160Error<I2C>> {
+    ) -> Result<OperationMode, Ens160Error<I2C>> {
         debug!("setting ens160 operation mode to {:#?}", mode);
         self.write_command([ENS160_OPMODE, mode as u8])?;
         self.delayer.delay_ms(50);
@@ -211,9 +210,9 @@ where
         temp_c: f32,
         rh_percent: u16,
     ) -> Result<(), Ens160Error<I2C>> {
-        let mut buffer: [u8; 2] = [0; 2];
-        let mut temp_val: u16 = truncf((temp_c + 273.15) * 64.0) as u16; // to Kelvin and scale it
-                                                                         //info!("setting temp comp to {:#04x}", temp_val.to_le());
+        let mut buffer: [u8; 2];
+        let temp_val: u16 = truncf((temp_c + 273.15) * 64.0) as u16; // to Kelvin and scale it
+                                                                     //info!("setting temp comp to {:#04x}", temp_val.to_le());
         buffer = temp_val.to_le_bytes(); // ???? or is it be
         self.write_command([ENS160_TEMP_IN, buffer[0], buffer[1]])?;
 
@@ -227,12 +226,12 @@ where
     pub fn get_temp_rh_comp(&mut self) -> Result<(f32, u16), Ens160Error<I2C>> {
         let mut result_buf: [u8; 2] = [0; 2];
         self.read_register(ENS160_DATA_T, &mut result_buf)?;
-        let mut value: u16 = u16::from_le_bytes(result_buf);
+        let value: u16 = u16::from_le_bytes(result_buf);
         let temp_comp_c = ((value as f32) / 64.0) - 273.15;
         //debug!("temp c compensation is {}", temp_comp_c);
 
         self.read_register(ENS160_DATA_RH, &mut result_buf)?;
-        let mut rh: u16 = u16::from_le_bytes(result_buf);
+        let rh: u16 = u16::from_le_bytes(result_buf);
         //debug!("read rh back as {}", rh);
         Ok((temp_comp_c, rh))
     }
