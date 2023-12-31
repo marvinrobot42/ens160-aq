@@ -10,7 +10,7 @@ description = "ScioSense ENS160 driver"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 license = "MIT OR Apache-2.0"
-keywords = ["sensor", "i2c", "ens160", "air quality", "sciosense"]
+keywords = ["driver", "sensor", "i2c", "ens160"]
 categories = ["embedded", "no-std"]
 publish = true
 exclude = [
