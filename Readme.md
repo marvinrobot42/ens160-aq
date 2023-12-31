@@ -37,12 +37,12 @@ Add the dependency to `Cargo.toml`.
 version = "0.1.0"
 ~~~~
 
-An `Ens160` structure is created from an I²C interface and a delay function.
+Create an Ens160 struct from an I²C interface and a delay function.
 Configure interrupt pin properties if required.  
-Initialize ENS160 (required delays are included).
-set_temp_rh_comp() can be called anytime for temperature and humidity componesation.
+Initialize ENS160.
+set_temp_rh_comp() can be called anytime for temperature and humidity compensation.
 Read the ENS160 status and check if new data or group data (if needed) is ready
-then get_measurements().
+then get_measurements().  Or you can get ECO2 or TVOC or air quality index separately. 
 Note that set_operation_mode(OperationMode::Reset) is available but it will put the ENS160
 back to factory defaults including the 24 hour "burn-in" mode.  It does not need to be called
 for any other reason.
