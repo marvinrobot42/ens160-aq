@@ -1,3 +1,4 @@
+# ENS160-AQ &emsp; [![crates.io](https://img.shields.io/crates/v/ens160-aq)](https://crates.io/crates/ens160-aq)
 Rust ENS160-AQ Crate
 ====
 
