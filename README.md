@@ -1,14 +1,12 @@
 # ENS160-AQ &emsp; [![crates.io](https://img.shields.io/crates/v/ens160-aq)](https://crates.io/crates/ens160-aq)
 
-====
-
-A Rust crate for ScioSense ENS160 air quality sensor 
+## A Rust crate for ScioSense ENS160 air quality sensor 
 
 <https://github.com/marvinrobot42/ens160-aq.git>
 
 [ENS160]: https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf
 
-Features
+### Features
 
 - designed for embedded use (ESP32-C3 and -S3 and STM32F3DISCOVERY)
 - configurable interrupt pin
@@ -35,7 +33,7 @@ Add the dependency to `Cargo.toml`.
 
 ~~~~toml
 [dependencies.ens160-aq]
-version = "0.1.0"
+version = "0.1.2"
 ~~~~
 
 Create an Ens160 struct from an I²C interface and a delay function.
