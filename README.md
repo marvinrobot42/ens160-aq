@@ -76,13 +76,13 @@ fn main() -> Result<()> {
   loop {
     if let Ok(status) = ens160.get_status() {
       if status.new_data_ready() {  // read all measurements
-        let measuremnts: Measurements = ens160.get_measurement().unwrap();
-        info!("measurements are : {:#?}\n\n", measuremnts);      
-     }
-
-    if !status.new_data_ready() {
-      info!("no new data ready");
+        let measuremnts: Measurements = ens160.get_measurements().unwrap();
+        info!("measurements are : {:#?}\n\n", measuremnts);    
+      else if !status.new_data_ready() {
+        info!("no new data ready");
+      }  
     }
+
     FreeRtos::delay_ms(30000);
   }
 
