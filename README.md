@@ -33,7 +33,7 @@ Add the dependency to `Cargo.toml`.
 
 ~~~~toml
 [dependencies.ens160-aq]
-version = "0.1.2"
+version = "0.1.4"
 ~~~~
 
 Create an Ens160 struct from an I²C interface and a delay function.
@@ -47,7 +47,9 @@ back to factory defaults including the 24 hour "burn-in" mode.  It does not need
 for any other reason.
 
 
+## Simple Example
 
+A more complete example is in the repository examples path
 ~~~~rust
 
 

@@ -1,7 +1,7 @@
 // ESP32-C3 style example
 
 use anyhow::Result;
-use ens160_aq::data::{InterruptPinConfig, Measurements, OperationMode};
+use ens160_aq::data::{InterruptPinConfig, Measurements};
 use ens160_aq::Ens160;
 use esp_idf_hal::{
     delay::{Ets, FreeRtos},
@@ -26,7 +26,7 @@ fn main() -> Result<()> {
     let i2c_dev = I2cDriver::new(i2c, sda, scl, &config)?;
 
     let ens160_int = PinDriver::input(pins.gpio6).unwrap(); // connect to ENS160 INT pin if using it
-                                                            // write an interrupt service function for the above pin
+                                                            // write an interrupt service function for the above pin (beyond the scope of this example)
 
     let mut ens160 = Ens160::new(i2c_dev, Ets {}); // Ets is ESP32 IDF delay function
 
