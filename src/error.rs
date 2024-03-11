@@ -1,19 +1,17 @@
 use core::fmt::Formatter;
 
-use embedded_hal::blocking::i2c::{Write, WriteRead};
+use embedded_hal::i2c::{I2c, SevenBitAddress};
 
 /// All possible errors
 /// Display not implemented for no_std support
 pub enum Ens160Error<I2C>
 where
-    I2C: WriteRead + Write,
-    <I2C as WriteRead>::Error: core::fmt::Debug,
-    <I2C as Write>::Error: core::fmt::Debug,
+    I2C: I2c<SevenBitAddress>
 {
     /// Error during I2C write operation.
-    WriteError(<I2C as Write>::Error),
+    WriteError(I2C::Error),
     /// Error during I2C WriteRead operation.
-    WriteReadError(<I2C as WriteRead>::Error),
+    WriteReadError(I2C::Error),
     /// Got an unexpected Part Id during sensor initalization.
     UnexpectedChipId(u16),
     /// unexpected Operation Mode
@@ -22,9 +20,7 @@ where
 
 impl<I2C> core::fmt::Debug for Ens160Error<I2C>
 where
-    I2C: WriteRead + Write,
-    <I2C as WriteRead>::Error: core::fmt::Debug,
-    <I2C as Write>::Error: core::fmt::Debug,
+    I2C: I2c<SevenBitAddress>
 {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::result::Result<(), core::fmt::Error> {
         match self {

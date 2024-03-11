@@ -6,9 +6,12 @@
 
 [ENS160]: https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf
 
+A benefit of using the ENS160 is the combined air quality index is calculated within the device, no external proprietary calculation programme is required. 
+
 ### Features
 
-- designed for embedded use (ESP32-C3 and -S3 and STM32F3DISCOVERY)
+- updated to use embedded-hal version 1.0.x
+- designed for embedded use (ESP32-C3, -C6 and -S3 and STM32F3DISCOVERY)
 - configurable interrupt pin
 - supports both 0x52 (default) and 0x53 (secondary) I2C device addresses
 - set temperature and humidity for ENS160 compensation calulation
@@ -22,8 +25,7 @@
 
 Notes
 
-This is my first device driver project.  It was inspired by Alexander Hübener's excellent ENS160 crate.
-I was not able to get that ENS160 crate working in my ESP32-C3 (unknown reason) so I created my own driver as a learning exercise.
+This is my first device driver project.  I was inspired by Alexander Hübener's excellent ENS160 crate.
 
 
 Usage
@@ -33,7 +35,7 @@ Add the dependency to `Cargo.toml`.
 
 ~~~~toml
 [dependencies.ens160-aq]
-version = "0.1.4"
+version = "0.2"
 ~~~~
 
 Create an Ens160 struct from an I²C interface and a delay function.
@@ -53,7 +55,7 @@ A more complete example is in the repository examples path
 ~~~~rust
 
 
-use ens160_aq::data::{InterruptPinConfig, Measurements, OperationMode};
+use ens160_aq::data::{InterruptPinConfig, Measurements};
 use ens160_aq::Ens160;
 ...
 

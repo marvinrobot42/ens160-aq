@@ -25,10 +25,9 @@ use crate::constants::{
     ENS160_RH_IN, ENS160_TEMP_IN,
 };
 
-use embedded_hal::blocking::{
-    delay::DelayMs,
-    i2c::{Write, WriteRead},
-};
+use embedded_hal::delay::DelayNs;
+use embedded_hal::i2c::{I2c, SevenBitAddress};
+
 use libm::{powf, truncf};
 use log::{debug, info};
 
@@ -51,10 +50,8 @@ pub struct Ens160<I2C, D> {
 
 impl<I2C, D> Ens160<I2C, D>
 where
-    I2C: WriteRead + Write,
-    <I2C as WriteRead>::Error: core::fmt::Debug,
-    <I2C as Write>::Error: core::fmt::Debug,
-    D: DelayMs<u8>,
+    I2C: I2c<SevenBitAddress>,
+    D: DelayNs,
 {
     /// create new ENS160 driver with default I2C address: ADDR pin low
     pub fn new(i2c: I2C, delayer: D) -> Self {
