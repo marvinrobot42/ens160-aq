@@ -181,32 +181,37 @@ impl InterruptPinConfig {
     }
     /// interrupt on new group data ready
     pub fn on_new_group_data(mut self) -> Self {
-        self.0 |= 0b0000100;
+        self.0 |= 0b00000100;
         self
     }
     /// no interrupt when new group data ready
     pub fn not_new_group_data(mut self) -> Self {
-        self.0 &= 0b1111011;
+        self.0 &= 0b11111011;
         self
     }
     /// interrupt on new data ready
     pub fn on_new_data(mut self) -> Self {
-        self.0 |= 0b0000010;
+        self.0 |= 0b00000010;
         self
     }
     /// no interrupt when new data ready
     pub fn not_new_data(mut self) -> Self {
-        self.0 &= 0b1111101;
+        self.0 &= 0b11111101;
         self
     }
     /// enable interrupt pin
     pub fn enable_interrupt(mut self) -> Self {
-        self.0 |= 0b0000001;
+        self.0 |= 0b00000001;
         self
     }
     /// disable interrupt pin
     pub fn disable_interrupt(mut self) -> Self {
-        self.0 &= 0b1111110;
+        self.0 &= 0b11111110;
         self
     }
+    /// build: just rerurns the value as u8
+    pub fn build(&self) -> u8 {  // nothing to build, but build method is part of builder pattern
+        self.0
+    }
+
 }
