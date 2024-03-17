@@ -28,7 +28,7 @@ Notes
 This is my first device driver project.  I was inspired by Alexander Hübener's excellent ENS160 crate.
 
 ## latest version
-0.2.1  fixed small bug in InterruptPinConfig, added build() method which just returns the .0 property as u8. 
+0.2.2  fixed small bug in InterruptPinConfig, added build() method which just returns the .0 property as u8. Updated the examples/airquality.rs file
 
 
 Usage

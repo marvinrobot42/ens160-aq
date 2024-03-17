@@ -31,15 +31,22 @@ fn main() -> Result<()> {
     let mut ens160 = Ens160::new(i2c_dev, Ets {}); // Ets is ESP32 IDF delay function
 
     // optional: configure ENS160 interrupt pin for on new data active low, push_pull drive mode
-    let int_pin_config: InterruptPinConfig = InterruptPinConfig::builder()
+    // see data sheet section 10.9
+    let int_pin_config: u8 = InterruptPinConfig::builder()
         .active_low()
         .push_pull()
         .not_new_group_data()
         .on_new_data()
-        .enable_interrupt();
-    ens160
-        .config_interrupt_pin(int_pin_config.get_value())
-        .unwrap();
+        .enable_interrupt()
+        .build();  // same as get_value() method
+    info!("int pin config is {:#04x}", int_pin_config);  
+    if let Ok(new_config_int) = ens160.config_interrupt_pin(int_pin_config) {
+            if (new_config_int == int_pin_config) {
+                info!("config_interrrupt_pin was good, new value is {:#04x}", new_config_int);
+            } else {
+                log::error!("config_interrupt_pin() not good, expected {:#04x}, got {:#04x}", int_pin_config, new_config_int);
+            }
+        }
 
     ens160.initialize().unwrap();
 
