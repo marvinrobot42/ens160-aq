@@ -66,7 +66,7 @@ fn main() -> Result<()> {
                 let measuremnts: Measurements = ens160.get_measurement().unwrap();
                 info!("measurements are : {:#?}\n\n", measuremnts);
             }
-            if status.new_group_data_ready() {
+            if status.new_group_data_ready() {  // useful to see raw data values
                 let group_data: [u8; 8] = ens160.get_group_data().unwrap();
                 info!(
                     "group data = {:#04x} {:#04x} {:#04x} {:#04x} {:#04x} {:#04x} {:#04x} {:#04x}",

@@ -29,6 +29,7 @@ pub struct Measurements {
     pub raw_resistance: f32,
 }
 
+/// air quality index 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 #[repr(u8)] // as defined in data sheet
 pub enum AirQualityIndex {
@@ -55,6 +56,7 @@ impl From<u8> for AirQualityIndex {
     }
 }
 
+/// raw ECO2 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ECO2 {
     pub value: u16,
@@ -147,7 +149,7 @@ bitfield! {
 }
 
 #[derive(Debug)]
-/// Interrupt pin configuration value
+/// Interrupt pin configuration value, use builder methods
 pub struct InterruptPinConfig(pub u8);
 
 impl InterruptPinConfig {
