@@ -1,10 +1,13 @@
-# ENS160-AQ &emsp; [![crates.io](https://img.shields.io/crates/v/ens160-aq)](https://crates.io/crates/ens160-aq)
+# ENS160-AQ &emsp; 
+[![crates.io](https://img.shields.io/crates/v/ens160-aq)](https://crates.io/crates/ens160-aq)
+[![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](https://github.com/marvinrobot42/ens160-aq.git)
+[![Documentation](https://docs.rs/ens160-aq/badge.svg)](https://docs.rs/ens160-aq)
 
 ## A Rust crate for ScioSense ENS160 air quality sensor 
 
 <https://github.com/marvinrobot42/ens160-aq.git>
 
-[ENS160]: https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf
+[ENS160-AQ]: https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-9-ENS160-Datasheet.pdf
 
 A benefit of using the ENS160 is the combined air quality index is calculated within the device, no external proprietary calculation programme is required. 
 
@@ -28,8 +31,10 @@ Notes
 This is my first device driver project.  I was inspired by Alexander Hübener's excellent ENS160 crate.
 
 ### Recent version history
-  - 0.2.5  added more documentation comments
-  - 0.2.2  fixed small bug in InterruptPinConfig, added build() method which just returns the .0 property - - as u8. Updated the examples/airquality.rs file
+  - 0.2.6 fixed README.MD
+  - 0.2.5 added more documentation comments
+  - 0.2.2 fixed small bug in InterruptPinConfig, added build() method which just returns the .0 property 
+          as u8. Updated the examples/airquality.rs file
 
 
 Usage
