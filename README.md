@@ -31,6 +31,7 @@ Notes
 This is my first device driver project.  I was inspired by Alexander Hübener's excellent ENS160 crate.
 
 ### Recent version history
+  - 0.2.7 added Raspberry Pi example
   - 0.2.6 fixed README.MD
   - 0.2.5 added more documentation comments
   - 0.2.2 fixed small bug in InterruptPinConfig, added build() method which just returns the .0 property 
