@@ -6,7 +6,7 @@ use libm::{exp, round, trunc};
 #[allow(unused_imports)] // for no_std use
 //use num_traits::float::FloatCore;
 
-//use crate::error::Ens160Error;
+//use crate::error::Error;
 use bitfield::bitfield;
 
 /// Default I²C address, ADDR pin low

@@ -3,7 +3,7 @@ use linux_embedded_hal::{Delay, I2cdev};
 
 use ens160_aq::data::{AirQualityIndex, Measurements as Measurements_aq};
 use ens160_aq::Ens160;
-use ens160_aq::error::Ens160Error;
+use ens160_aq::error::Error;
 
 use std::thread;
 use std::time::Duration;
