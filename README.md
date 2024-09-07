@@ -14,6 +14,7 @@ A benefit of using the ENS160 is the combined air quality index is calculated wi
 ### Features
 
 - updated to use embedded-hal version 1.0.x
+- includes async support as a feature(s)
 - designed for embedded use (ESP32-C3, -C6 and -S3) and Raspberry Pi
 - configurable interrupt pin
 - supports both 0x52 (default) and 0x53 (secondary) I2C device addresses
@@ -40,6 +41,7 @@ Check your hardware specific hal dependencies in crate.io.  Version 1.0 is the l
 linux-embedded-hal and version "0.4.0" depends on embedded-hal ^1 .
 
 ### Recent version history
+  - 0.2.9 added async support
   - 0.2.8 updated README.md
   - 0.2.7 added Raspberry Pi example
   - 0.2.6 fixed README.MD
@@ -58,6 +60,12 @@ Add the dependency to `Cargo.toml`.
 version = "0.2"
 ~~~~
 
+or for async
+~~~~toml
+[dependencies.ens160-aq]
+version = "0.2", features = ["async"]
+~~~~
+
 Create an Ens160 struct from an I²C interface and a delay function.
 Configure interrupt pin properties if required.  
 Initialize ENS160.
@@ -71,7 +79,9 @@ for any other reason.
 
 ## Simple Example
 
-A more complete example is in the repository examples path
+A more complete example is in the repository examples path.
+
+For async see async-embassy folder in examples folder of repository.
 ~~~~rust
 
 
