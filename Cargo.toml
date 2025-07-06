@@ -1,6 +1,6 @@
 [package]
 name = "ens160-aq"
-version = "0.2.10"
+version = "0.2.11"
 edition = "2021"
 
 authors = ["fordauthor42@gmail.com"]

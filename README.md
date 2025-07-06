@@ -36,6 +36,7 @@ Check your hardware specific hal dependencies in crate.io.  Version 1.0 is the l
 linux-embedded-hal and version "0.4.0" depends on embedded-hal ^1 .
 
 ### Recent version history
+  - 0.2.11 Updated README.md (STM32***-hal crates now support embedded-hal version 1)
   - 0.2.10 Updated dependencies
   - 0.2.9 added async support
   - 0.2.8 updated README.md
