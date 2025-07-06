@@ -31,11 +31,6 @@ Notes
 
 This is my first device driver project.  I was inspired by Alexander Hübener's excellent ENS160 crate.
 
-STM32  :  The stm32fxx-hal crates are still embedded-hal version 0.2 based.  In order to use this ens160-aq
-          crate as a dependency for a STM32 project use version 0.1.4.  For example 
-          [dependencies.ens160-aq]
-          version = "0.1.4"
-          Newer versions of ens160-aq are embedded-hal 1.0+ based and not compatible, you will get i2c and Delay::delay trait bounds build errors.
           
 Check your hardware specific hal dependencies in crate.io.  Version 1.0 is the latest.  For example the ESP32-C3 and -C6 hal is esp-idf-hal version "0.43.0", it shows that it depends on embedded-hal version ^1.  Raspberry Pi is
 linux-embedded-hal and version "0.4.0" depends on embedded-hal ^1 .
