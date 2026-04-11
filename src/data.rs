@@ -142,7 +142,7 @@ bitfield! {
 
     pub bool, new_group_data_ready, _: 0;
     pub bool, new_data_ready, _: 1;
-    pub into ValidityFlag, validity_flag, _: 3,2;  // 2 bits
+    pub into ValidityFlag, get_status, _: 3,2;  // 2 bits
     // 5, 4 not used
     pub bool, error, _: 6;  // probably wrong opmode selected
     pub bool, running_mode, _: 7;

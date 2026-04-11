@@ -108,10 +108,11 @@ where
         }
     }
     
-    /// give back the I2C interface
-    pub fn release(self) -> I2C {
-        self.i2c
-    }
+    // give back the I2C interface
+    // cannot do this with embassy
+    // pub fn release(self) -> I2C {
+    //     self.i2c
+    // }
 }
 
 #[maybe_async_cfg::maybe(
